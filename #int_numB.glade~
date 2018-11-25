@@ -2,13 +2,13 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkWindow" id="int_numA">
+  <object class="GtkWindow" id="#int_numB">
     <property name="can_focus">False</property>
     <child>
       <placeholder/>
     </child>
     <child>
-      <object class="GtkGrid" id="MATRIZ_a">
+      <object class="GtkGrid" id="MATRIZ_b">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
@@ -52,16 +52,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="F3C1">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">2</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkEntry" id="F2C2">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -79,6 +69,16 @@
           <packing>
             <property name="left_attach">2</property>
             <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="F1C">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">2</property>
           </packing>
         </child>
         <child>
