@@ -72,9 +72,6 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <accessibility>
-              <action action_name="click" description="#int_numA.glade #int_numB.glade&#10;"/>
-            </accessibility>
           </object>
           <packing>
             <property name="expand">False</property>
