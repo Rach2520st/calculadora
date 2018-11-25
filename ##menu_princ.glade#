@@ -2,45 +2,63 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkWindow">
+  <object class="GtkWindow" id="menu_pr">
     <property name="can_focus">False</property>
     <child>
       <placeholder/>
     </child>
     <child>
-      <object class="GtkBox" id="ventana">
+      <object class="GtkBox" id="principal menu">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkLabel" id="p_filasA">
+          <object class="GtkLabel" id="tit_cm">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_bottom">22</property>
-            <property name="label" translatable="yes">ingresa el número de filas de la matriz A:</property>
+            <property name="has_tooltip">True</property>
+            <property name="label" translatable="yes">Calculadora de Matrices</property>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
+            <property name="padding">10</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="n_filasA">
+          <object class="GtkLabel" id="descripcion">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_bottom">52</property>
+            <property name="label" translatable="yes">Bienvenido a la calculadora de matrices, este es un programa que permite la ejecución de diferentes ecuaciones que permiten las siguientes acciones obteniendo los mejores resultados</property>
+            <property name="wrap">True</property>
+            <property name="width_chars">1</property>
+            <property name="angle">0.02</property>
+            <attributes>
+              <attribute name="style" value="oblique"/>
+              <attribute name="weight" value="ultralight"/>
+            </attributes>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
+            <property name="padding">1</property>
             <property name="position">1</property>
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="p_columnasA">
+          <object class="GtkLabel" id="opciones">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">ingresa el número de columnas de la matriz A:</property>
+            <property name="label" translatable="yes">label</property>
+            <attributes>
+              <attribute name="style" value="italic"/>
+              <attribute name="weight" value="light"/>
+              <attribute name="variant" value="normal"/>
+              <attribute name="stretch" value="expanded"/>
+              <attribute name="size" value="100"/>
+            </attributes>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -49,9 +67,14 @@
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="n_columnasA">
+          <object class="GtkButton" id="s_matrices">
+            <property name="label" translatable="yes">suma de matrices</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <accessibility>
+              <action action_name="click" description="#int_numA.glade #int_numB.glade&#10;"/>
+            </accessibility>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -60,10 +83,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="p_filasB">
+          <object class="GtkButton" id="r_matrices">
+            <property name="label" translatable="yes">sustracción de matrices</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">ingresa el número de filas de la matriz B:</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -72,9 +96,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="n_filasB">
+          <object class="GtkButton" id="m_matrices">
+            <property name="label" translatable="yes">multiplicación de matrices</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -83,10 +109,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="p_columnasB">
+          <object class="GtkButton" id="det_matriz">
+            <property name="label" translatable="yes">determinante de la matriz</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">ingrese el numero de columnas de la matriz B:</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -95,9 +122,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="n_columnasB">
+          <object class="GtkButton" id="trans_matriz">
+            <property name="label" translatable="yes">matriz transpuesta</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -106,8 +135,8 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="int">
-            <property name="label" translatable="yes">Calcular</property>
+          <object class="GtkButton" id="inver_matriz">
+            <property name="label" translatable="yes">matriz inversa</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -115,7 +144,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">9</property>
+            <property name="position">8</property>
           </packing>
         </child>
       </object>
