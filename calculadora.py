@@ -25,6 +25,8 @@ class calculadora():
         self.m_matr.connect("clicked", self.multiplicacion_matrices)
         self.d_matr = self.builder.get_object("det_matriz")
         self.d_matr.connect("clicked", self.determinante_matriz)
+        self.trans_matr = self.builder.get_object("trans_matriz")
+        self.trans_matr.connect("clicked", self.matriz_transpuesta)
         menu.show_all()
 
         def suma_matrices(self, btn=None):
@@ -180,7 +182,40 @@ class calculadora():
             af3c1 = self.F3C1.get_text()
             af3c2 = self.F3C2.get_text()
             af3c3 = self.F3C3.get_text()
+        def matriz_transpuesta(self, dtn=None):
+            self.builder.add_from_file("#int_numA.glade")
+            m_A = self.builder.get_object("int_numA")
+            af1c1 = self.F1C1.get_text()
+            af1c2 = self.F1C2.get_text()
+            af1c3 = self.F1C3.get_text()
+            af2c1 = self.F2C1.get_text()
+            af2c2 = self.F2C2.get_text()
+            af2c3 = self.F2C3.get_text()
+            af3c1 = self.F3C1.get_text()
+            af3c2 = self.F3C2.get_text()
+            af3c3 = self.F3C3.get_text()
 
+            rf1c1 = af1c1
+            rf1c2 = af2c1
+            rf1c3 = af3c1
+            rf2c1 = af1c2
+            rf2c2 = af2c2
+            rf2c3 = af3c2
+            rf3c1 = af1c3
+            rf3c2 = af2c3
+            rf3c3 = af3c3
+
+            self.builder.get_object("resultados.glade")
+            # ingresa el resultado de la matriz transpuesta a la matriz resultado
+            self.r_f1c1.set_text(rf1c1)
+            self.r_f1c2.set_text(rf1c2)
+            self.r_f1c3.set_text(rf1c3)
+            self.r_f2c1.set_text(rf2c1)
+            self.r_f2c2.set_text(rf2c2)
+            self.r_f2c3.set_text(rf2c3)
+            self.r_f3c1.set_text(rf3c1)
+            self.r_f3c2.set_text(rf3c2)
+            self.r_f3c3.set_text(rf3c3)
         
 if __name__ == "__main__":
     w = calculadora()
