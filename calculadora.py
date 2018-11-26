@@ -23,6 +23,8 @@ class calculadora():
         self.r_matr.connect("clicked", self.resta_matrices)
         self.m_matr = self.builder.get_object("m_matrices")
         self.m_matr.connect("clicked", self.multiplicacion_matrices)
+        self.d_matr = self.builder.get_object("det_matriz")
+        self.d_matr.connect("clicked", self.determinante_matriz)
         menu.show_all()
 
         def suma_matrices(self, btn=None):
@@ -166,6 +168,20 @@ class calculadora():
             self.r_f3c1.set_text(rf3c1)
             self.r_f3c2.set_text(rf3c2)
             self.r_f3c3.set_text(rf3c3)
+        def determinante_matriz(self, dtn=None):
+            self.builder.add_from_file("#int_numA.glade")
+            m_A = self.builder.get_object("int_numA")
+            af1c1 = self.F1C1.get_text()
+            af1c2 = self.F1C2.get_text()
+            af1c3 = self.F1C3.get_text()
+            af2c1 = self.F2C1.get_text()
+            af2c2 = self.F2C2.get_text()
+            af2c3 = self.F2C3.get_text()
+            af3c1 = self.F3C1.get_text()
+            af3c2 = self.F3C2.get_text()
+            af3c3 = self.F3C3.get_text()
+
+        
 if __name__ == "__main__":
     w = calculadora()
     Gtk.main()
