@@ -27,6 +27,8 @@ class calculadora():
         self.d_matr.connect("clicked", self.determinante_matriz)
         self.trans_matr = self.builder.get_object("trans_matriz")
         self.trans_matr.connect("clicked", self.matriz_transpuesta)
+        self.inver_matr = self.builder.get_object("inver_matriz")
+        self.inver_matr.connect("clicked", self.matriz_inversa)
         menu.show_all()
 
     def suma_matrices(self, btn=None):
@@ -191,7 +193,6 @@ class calculadora():
 
         self.builder.add_from_file("resultados_DET.glade")
         self.resultado_determinante.set_text(determinante)
-
     def matriz_transpuesta(self, dtn=None):
         self.builder.add_from_file("#int_numA.glade")
         m_A = self.builder.get_object("int_numA")
@@ -226,6 +227,46 @@ class calculadora():
         self.r_f3c1.set_text(rf3c1)
         self.r_f3c2.set_text(rf3c2)
         self.r_f3c3.set_text(rf3c3)
+    def matriz_inversa(self, dtn=None):
+        self.builder.add_from_file("#int_numA.glade")
+        m_A = self.builder.get_object("int_numA")
+        af1c1 = self.builder.get_object("FC1C1").get_text()
+        af1c2 = self.builder.get_object("F1C2").get_text()
+        af1c3 = self.builder.get_object("F1C3").get_text()
+        af2c1 = self.builder.get_object("F2C1").get_text()
+        af2c2 = self.builder.get_object("F2C2").get_text()
+        af2c3 = self.builder.get_object("F2C3").get_text()
+        af3c1 = self.builder.get_object("F3C1").get_text()
+        af3c2 = self.builder.get_object("F3C2").get_text()
+        af3c3 = self.builder.get_object("F3C3").get_text()
+        
+        determinante = ((af1c1 * ((af2c2 * af3c3) - 0(af2c3 * af3c2))) - (af1c2 * ((af2c1 * af3c3) - (af2c3 * af3c1))) + (af1c3 * ((af2c1 * af3c2) - (af2c2 * af3c1))))
+        # si el determinate es distinto de cero
+        # existe una matriz inversa
+        if determinante != 0:
+            rf1c1 = (af2c2*af3c3-af3c2*af2c3)/determinante
+            rf1c2 = ((af1c2*af3c3-af3c2*af1c3)*-1)/determinante
+            rf1c3 = (af1c2*af2c3-af2c2*af1c3)/determinante
+            rf2c1 = ((af2c1*af3c3-af3c1*af2c3)*-1)/determinante
+            rf2c2 = ((af1c1*af3c3-af3c1*af1c3))/determinante
+            rf2c3 = ((af1c1*af2c3-af2c1*af1c3)*-1)/determinante
+            rf3c1 = ((af2c1*af3c2-af3c1*af2c2))/determinante
+            rf3c2 = ((af1c1*af3c2-af3c1*af1c2)*-1)/determinante
+            rf3c3 = (af1c1*af2c2-af2c1*af1c2)/determinante
+
+            self.builder.get_object("resultados.glade")
+            # ingresa el resultado de la matriz inversa a la matriz resultado
+            self.r_f1c1.set_text(rf1c1)
+            self.r_f1c2.set_text(rf1c2)
+            self.r_f1c3.set_text(rf1c3)
+            self.r_f2c1.set_text(rf2c1)
+            self.r_f2c2.set_text(rf2c2)
+            self.r_f2c3.set_text(rf2c3)
+            self.r_f3c1.set_text(rf3c1)
+            self.r_f3c2.set_text(rf3c2)
+            self.r_f3c3.set_text(rf3c3)
+        else: 
+        # emmm no se que mensaje HELP, SI EL DETERMINATE ESTA MALO FUIMOS BUENAS
 
 if __name__ == "__main__":
     w = calculadora()
