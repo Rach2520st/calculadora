@@ -182,6 +182,12 @@ class calculadora():
             af3c1 = self.F3C1.get_text()
             af3c2 = self.F3C2.get_text()
             af3c3 = self.F3C3.get_text()
+
+            determinante = ((af1c1 * ((af2c2 * af3c3) - 0(af2c3 * af3c2))) - (af1c2 * ((af2c1 * af3c3) - (af2c3 * af3c1))) + (af1c3 * ((af2c1 * af3c2) - (af2c2 * af3c1))))
+
+            self.builder.add_from_file("resultados_DET.glade")
+            self.resultado_determinante.set_text(determinante)
+
         def matriz_transpuesta(self, dtn=None):
             self.builder.add_from_file("#int_numA.glade")
             m_A = self.builder.get_object("int_numA")
@@ -216,7 +222,7 @@ class calculadora():
             self.r_f3c1.set_text(rf3c1)
             self.r_f3c2.set_text(rf3c2)
             self.r_f3c3.set_text(rf3c3)
-        
+
 if __name__ == "__main__":
     w = calculadora()
     Gtk.main()
