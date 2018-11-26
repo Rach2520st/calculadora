@@ -30,8 +30,11 @@ class calculadora():
         menu.show_all()
 
     def suma_matrices(self, btn=None):
+        self.builder = Gtk.Builder()
         self.builder.add_from_file("#int_numA.glade")
         m_A = self.builder.get_object("int_numA")
+        m_A.set_default_size(600, 400)
+
         # obtener el valor de la entrada de texto en glade
         af1c1 = self.builder.get_object("FC1C1").get_text()
         af1c2 = self.builder.get_object("F1C2").get_text()
@@ -42,7 +45,7 @@ class calculadora():
         af3c1 = self.builder.get_object("F3C1").get_text()
         af3c2 = self.builder.get_object("F3C2").get_text()
         af3c3 = self.builder.get_object("F3C3").get_text()
-
+        m_A.show_all()
         self.builder.add_from_file("#int_numB.glade")
         m_B = self.builder.get_object("#int_numB")
 
