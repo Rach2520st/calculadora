@@ -3,7 +3,7 @@ gi.require_version('Gtk', '3.0')
 
 from gi.repository import Gtk
 class calculadora():
-    def _init_(self):
+    def __init__(self):
         # se crea un objeto builder para manipular Gtk
         self.builder = Gtk.builder()
         # agregamos los objetos creados en glade
