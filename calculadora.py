@@ -16,19 +16,24 @@ class calculadora():
         # opciones de calculadora
         # cargar los botones de las opciones
         # carga el boton
-        self.s_matr = self.builder.get_object("s_matrices")
+        self.button_suma_matrices = self.builder.get_object("s_matrices")
         # vincula el click con ingresar a la opcion
-        self.s_matr.connect("clicked", self.suma_matrices)
-        self.r_matr = self.builder.get_object("r_matrices")
-        self.r_matr.connect("clicked", self.resta_matrices)
-        self.m_matr = self.builder.get_object("m_matrices")
-        self.m_matr.connect("clicked", self.multiplicacion_matrices)
-        self.d_matr = self.builder.get_object("det_matriz")
-        self.d_matr.connect("clicked", self.determinante_matriz)
-        self.trans_matr = self.builder.get_object("trans_matriz")
-        self.trans_matr.connect("clicked", self.matriz_transpuesta)
-        self.inver_matr = self.builder.get_object("inver_matriz")
-        self.inver_matr.connect("clicked", self.matriz_inversa)
+        self.button_suma_matrices.connect("clicked", self.suma_matrices)
+        
+        self.button_resta_matrices = self.builder.get_object("r_matrices")
+        self.button_resta_matrices.connect("clicked", self.resta_matrices)
+        
+        self.button_multiplicacion_matrices = self.builder.get_object("m_matrices")
+        self.button_multiplicacion_matrices.connect("clicked", self.multiplicacion_matrices)
+        
+        self.button_determinante_matriz = self.builder.get_object("det_matriz")
+        self.button_determinante_matriz.connect("clicked", self.determinante_matriz)
+        
+        self.button_matriz_transpuesta = self.builder.get_object("trans_matriz")
+        self.button_matriz_transpuesta.connect("clicked", self.matriz_transpuesta)
+        
+        self.button_matriz_inversa = self.builder.get_object("inver_matriz")
+        self.button_matriz_inversa.connect("clicked", self.matriz_inversa)
         menu.show_all()
 
     def suma_matrices(self, btn=None):
@@ -265,8 +270,11 @@ class calculadora():
             self.r_f3c1.set_text(rf3c1)
             self.r_f3c2.set_text(rf3c2)
             self.r_f3c3.set_text(rf3c3)
-        else: 
-        # emmm no se que mensaje HELP, SI EL DETERMINATE ESTA MALO FUIMOS BUENAS
+        else:
+            self.builder.add_from_file("resultados_DET.glade")
+            self.resultado_determinante.set_text("esta matriz no posee matriz inversa")
+            
+
 
 if __name__ == "__main__":
     w = calculadora()
