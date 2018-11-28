@@ -166,7 +166,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="adjustment">adjustment9</property>
-            <property name="value">-405.19999997563662</property>
+            <property name="value">-405.19999999999999</property>
           </object>
           <packing>
             <property name="left_attach">2</property>
