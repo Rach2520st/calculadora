@@ -84,8 +84,11 @@ class calculadora():
         self.r_f3c3.set_text(rf3c3)
 
     def resta_matrices(self, btn=None):
+        self.builder = Gtk.Builder()
         self.builder.add_from_file("#int_numA.glade")
         m_A = self.builder.get_object("int_numA")
+        m_A.set_default_size(600, 400)
+        
         # obtener el valor de la entrada de texto en glade
         af1c1 = self.builder.get_object("F1C1").get_text()
         af1c2 = self.builder.get_object("F1C2").get_text()
@@ -131,8 +134,10 @@ class calculadora():
         self.r_f3c2.set_text(rf3c2)
         self.r_f3c3.set_text(rf3c3)
     def multiplicacion_matrices(self, btn=None):
+        self.builder = Gtk.Builder()
         self.builder.add_from_file("#int_numA.glade")
         m_A = self.builder.get_object("int_numA")
+        m_A.set_default_size(600, 400)
         
         af1c1 = self.builder.get_object("F1C1").get_text()
         af1c2 = self.builder.get_object("F1C2").get_text()
@@ -178,8 +183,12 @@ class calculadora():
         self.r_f3c2.set_text(rf3c2)
         self.r_f3c3.set_text(rf3c3)
     def determinante_matriz(self, dtn=None):
+        
+        self.builder = Gtk.Builder()
         self.builder.add_from_file("#int_numA.glade")
         m_A = self.builder.get_object("int_numA")
+        m_A.set_default_size(600, 400)
+        
         af1c1 = self.builder.get_object("F1C1").get_text()
         af1c2 = self.builder.get_object("F1C2").get_text()
         af1c3 = self.builder.get_object("F1C3").get_text()
@@ -195,8 +204,12 @@ class calculadora():
         self.builder.add_from_file("resultados_DET.glade")
         self.resultado_determinante.set_text(determinante)
     def matriz_transpuesta(self, dtn=None):
+        
+        self.builder = Gtk.Builder()
         self.builder.add_from_file("#int_numA.glade")
         m_A = self.builder.get_object("int_numA")
+        m_A.set_default_size(600, 400)
+
         af1c1 = self.builder.get_object("F1C1").get_text()
         af1c2 = self.builder.get_object("F1C2").get_text()
         af1c3 = self.builder.get_object("F1C3").get_text()
@@ -229,8 +242,12 @@ class calculadora():
         self.r_f3c2.set_text(rf3c2)
         self.r_f3c3.set_text(rf3c3)
     def matriz_inversa(self, dtn=None):
+        
+        self.builder = Gtk.Builder()
         self.builder.add_from_file("#int_numA.glade")
         m_A = self.builder.get_object("int_numA")
+        m_A.set_default_size(600, 400)
+        
         af1c1 = self.builder.get_object("F1C1").get_text()
         af1c2 = self.builder.get_object("F1C2").get_text()
         af1c3 = self.builder.get_object("F1C3").get_text()
