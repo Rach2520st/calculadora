@@ -21,7 +21,9 @@ Los valores a ingresar han de ser exclusivamente números.
 
 # Sobre el código:
 El código está orientado a objetos en donde se le dan ordenes ha ser ejectudas. Gtk hace que el trabajo se mucho más fácil teniendo ciertas funciones propias para la ejecucíon de acciones.
+
 El código contiene 6 funciones (suma, sustracción, multiplicación, determinante, transpuesta e inversa de matrices 3x3) encargadas de realizar los cálculos correspondientes indicados en el menú principal. Estas son llamadas cuando se hace click en cualquiera de ellas, la función "'__init__'" es la que le da a ordenes a Gtk builder para que este trabaje con los distintos objetos (valores) que son entregados por el usuario. Los archivos creados en glade (ventanas: principal y emergentes) se van entregando , siendo la única condición para su ejecucuión presionar click en cada un de ellos.
+
 Finalmente se le es entregada una condición que permite que la instancia se ejecute.
 
 # Errores del programa:
