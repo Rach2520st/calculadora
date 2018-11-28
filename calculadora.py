@@ -36,7 +36,9 @@ class calculadora():
         self.builder.add_from_file("#int_numA.glade")
         m_A = self.builder.get_object("int_numA")
         m_A.set_default_size(600, 400)
-        self.si_matriz = self.builder.get_object("")
+        #añade el boton siguiente que hace que aparezca la matriz B
+        self.si_matriz = self.builder.get_object("siguiente_A")
+        self.si_matriz.connect("clicked", self.sig_matriz)
 
         # obtener el valor de la entrada de texto en glade
         af1c1 = self.builder.get_object("F1C1").get_value()
@@ -50,18 +52,7 @@ class calculadora():
         af3c3 = self.builder.get_object("F3C3").get_value()
         m_A.show_all()
         
-        self.builder.add_from_file("#int_numB.glade")
-        m_B = self.builder.get_object("#int_numB")
-
-        bf1c1 = self.builder.get_object("f1c1").get_value()
-        bf1c2 = self.builder.get_object("f1c2").get_value()
-        bf1c3 = self.builder.get_object("f1c3").get_value()
-        bf2c1 = self.builder.get_object("f2c1").get_value()
-        bf2c2 = self.builder.get_object("f2c2").get_value()
-        bf2c3 = self.builder.get_object("f2c3").get_value()
-        bf3c1 = self.builder.get_object("f3c1").get_value()
-        bf3c2 = self.builder.get_object("f3c2").get_value()
-        bf3c3 = self.builder.get_object("f3c3").get_value()
+        
         # Operacion Suma
         rf1c1 = af1c1 + bf1c1
         rf1c2 = af1c2 + bf1c2
@@ -72,8 +63,6 @@ class calculadora():
         rf3c1 = af3c1 + bf3c1
         rf3c2 = af3c2 + bf3c2
         rf3c3 = af3c3 + bf3c3
-        self.builder.get_object("resultados.glade")
-        # ingresa el resultado de la suma en la matriz resultado
         self.r_f1c1.set_text(rf1c1)
         self.r_f1c2.set_text(rf1c2)
         self.r_f1c3.set_text(rf1c3)
@@ -83,6 +72,24 @@ class calculadora():
         self.r_f3c1.set_text(rf3c1)
         self.r_f3c2.set_text(rf3c2)
         self.r_f3c3.set_text(rf3c3)
+    def sig_matriz(self, btn=None):
+
+        self.builder = Gtk.Builder()
+        self.builder.add_from_file("#int_numB.glade")
+        m_B = self.builder.get_object("int_numB")
+        m_B.set_default_size(600, 400)
+     
+
+        bf1c1 = self.builder.get_object("f1c1").get_value()
+        bf1c2 = self.builder.get_object("f1c2").get_value()
+        bf1c3 = self.builder.get_object("f1c3").get_value()
+        bf2c1 = self.builder.get_object("f2c1").get_value()
+        bf2c2 = self.builder.get_object("f2c2").get_value()
+        bf2c3 = self.builder.get_object("f2c3").get_value()
+        bf3c1 = self.builder.get_object("f3c1").get_value()
+        bf3c2 = self.builder.get_object("f3c2").get_value()
+        bf3c3 = self.builder.get_object("f3c3").get_value()
+        m_B.show_all()
 
     def resta_matrices(self, btn=None):
         self.builder = Gtk.Builder()
