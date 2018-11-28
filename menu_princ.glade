@@ -31,7 +31,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_bottom">52</property>
-            <property name="label" translatable="yes">Bienvenido a la calculadora de matrices, este es un programa que permite la ejecución de diferentes ecuaciones que permiten las siguientes acciones obteniendo los mejores resultados</property>
+            <property name="label" translatable="yes">Bienvenido a la calculadora de matrices. Este es un programa que permite la ejecución de diferentes operaciones EXCLUSIVAMENTE en matrices de 3x3.</property>
             <property name="wrap">True</property>
             <property name="width_chars">1</property>
             <property name="angle">0.02</property>
