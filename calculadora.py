@@ -47,10 +47,10 @@ class calculadora():
         ventana_determinante()
 
     def matriz_transpuesta(self, boton):
-        print("esto aun no hace nada :(")
+        ventana_dos_matrices("transpuesta")
 
     def matriz_inversa(self, boton):
-        print("esto tampoco no hace nada :(")
+        ventana_dos_matrices("inversa")
 
 
 class ventana_tres_matrices:
@@ -313,6 +313,169 @@ class ventana_determinante:
         self.resultado.set_value(0)
 
 
+class ventana_dos_matrices:
+    def __init__(self, metodo):
+        self.builder = Gtk.Builder()
+        self.builder.add_from_file("dos_matrices.glade")
+        ventana = self.builder.get_object("ventana_dos_matrices")
+
+        # ponerle un titulo a la ventana
+        self.titulo = self.builder.get_object("titulo")
+
+        if metodo == "inversa":
+            self.titulo.set_label("Matriz Inversa")
+        elif metodo == "transpuesta":
+            self.titulo.set_label("Matriz Transpuesta")
+
+        # la matriz A
+        self.AF1C1 = self.builder.get_object("AF1C1")
+        self.AF1C2 = self.builder.get_object("AF1C2")
+        self.AF1C3 = self.builder.get_object("AF1C3")
+        self.AF2C1 = self.builder.get_object("AF2C1")
+        self.AF2C2 = self.builder.get_object("AF2C2")
+        self.AF2C3 = self.builder.get_object("AF2C3")
+        self.AF3C1 = self.builder.get_object("AF3C1")
+        self.AF3C2 = self.builder.get_object("AF3C2")
+        self.AF3C3 = self.builder.get_object("AF3C3")
+
+        # matriz B
+        self.BF1C1 = self.builder.get_object("BF1C1")
+        self.BF1C2 = self.builder.get_object("BF1C2")
+        self.BF1C3 = self.builder.get_object("BF1C3")
+        self.BF2C1 = self.builder.get_object("BF2C1")
+        self.BF2C2 = self.builder.get_object("BF2C2")
+        self.BF2C3 = self.builder.get_object("BF2C3")
+        self.BF3C1 = self.builder.get_object("BF3C1")
+        self.BF3C2 = self.builder.get_object("BF3C2")
+        self.BF3C3 = self.builder.get_object("BF3C3")
+
+        boton_borrar = self.builder.get_object("boton_borrar")
+        boton_borrar.connect("clicked", self.borrar_todo)
+
+        boton_calcular = self.builder.get_object("boton_calcular")
+
+        # esto ayuda a decidir si vamos a hacer la invera o transpuesta
+        if metodo == "inversa":
+            boton_calcular.connect("clicked", self.inversa)
+        elif metodo == "transpuesta":
+            boton_calcular.connect("clicked", self.transpuesta)
+
+        # deja cerrar la ventana al apretar la X roja
+        ventana.connect("destroy", Gtk.main_quit)
+
+        # mostrar todo
+        ventana.show_all()
+
+    def inversa(self, boton):
+        # obtener los numeros de la matriz A
+        (AF1C1, AF1C2, AF1C3, AF2C1, AF2C2, AF2C3, AF3C1, AF3C2, AF3C3) = self.obtener_valores_matriz_a()
+
+        vF1C1 = self.AF1C1.get_value()
+        vF1C2 = self.AF1C2.get_value()
+        vF1C3 = self.AF1C3.get_value()
+        vF2C1 = self.AF2C1.get_value()
+        vF2C2 = self.AF2C2.get_value()
+        vF2C3 = self.AF2C3.get_value()
+        vF3C1 = self.AF3C1.get_value()
+        vF3C2 = self.AF3C2.get_value()
+        vF3C3 = self.AF3C3.get_value()
+
+        determinante = (vF1C1 * (vF2C2 * vF3C3 - vF2C3 * vF3C2)) - (vF1C2 * (vF2C1 * vF3C3 - vF2C3 * vF3C1)) + (vF1C3 * (vF2C1 * vF3C2 - vF2C2 * vF3C1))
+
+        # si el determinate es distinto de cero
+        # existe una matriz inversa
+        if determinante != 0:
+            RF1C1 = (((AF2C2 * AF3C3) - (AF3C2 * AF2C3)) / determinante)
+            RF1C2 = ((((AF1C2 * AF2C3) - (AF3C2 * AF1C3)) * -1) / determinante)
+            RF1C3 = (((AF1C2 * AF2C3) - (AF2C2 * AF1C3)) / determinante)
+            RF2C1 = ((((AF2C1 * AF3C3) - (AF3C1 * AF2C3)) * -1) / determinante)
+            RF2C2 = (((AF1C1 * AF3C3) - (AF3C1 * AF1C3)) / determinante)
+            RF2C3 = ((((AF1C1 * AF2C3) - (AF2C1 * AF1C3)) * -1) / determinante)
+            RF3C1 = (((AF2C1 * AF3C2) - (AF3C1 * AF2C2)) / determinante)
+            RF3C2 = ((((AF1C1 * AF3C2) - (AF3C1 * AF1C2)) * -1) / determinante)
+            RF3C3 = (((AF1C1 * AF2C2) - (AF2C1 * AF1C2)) / determinante)
+
+            # a cada casilla de la matriz B de resultados
+            self.BF1C1.set_value(RF1C1)
+            self.BF1C2.set_value(RF1C2)
+            self.BF1C3.set_value(RF1C3)
+            self.BF2C1.set_value(RF2C1)
+            self.BF2C2.set_value(RF2C2)
+            self.BF2C3.set_value(RF2C3)
+            self.BF3C1.set_value(RF3C1)
+            self.BF3C2.set_value(RF3C2)
+            self.BF3C3.set_value(RF3C3)
+
+            self.titulo.set_text("matriz inversa")
+
+        else:
+            self.titulo.set_text("matriz no posee inversa")
+
+    def transpuesta(self, boton):
+        # obtener los numeros de la matriz A y Builder
+        (AF1C1, AF1C2, AF1C3, AF2C1, AF2C2, AF2C3, AF3C1, AF3C2, AF3C3) = self.obtener_valores_matriz_a()
+
+        # cambio de los numeros
+        RF1C1 = AF1C1
+        RF1C2 = AF2C1
+        RF1C3 = AF3C1
+        RF2C1 = AF1C2
+        RF2C2 = AF2C2
+        RF2C3 = AF3C2
+        RF3C1 = AF1C3
+        RF3C2 = AF2C3
+        RF3C3 = AF3C3
+
+        self.BF1C1.set_value(RF1C1)
+        self.BF1C2.set_value(RF1C2)
+        self.BF1C3.set_value(RF1C3)
+        self.BF2C1.set_value(RF2C1)
+        self.BF2C2.set_value(RF2C2)
+        self.BF2C3.set_value(RF2C3)
+        self.BF3C1.set_value(RF3C1)
+        self.BF3C2.set_value(RF3C2)
+        self.BF3C3.set_value(RF3C3)
+
+    def borrar_todo(self, boton):
+        # ponerle el numero cero a la matriz A
+        self.AF1C1.set_value(0)
+        self.AF1C2.set_value(0)
+        self.AF1C3.set_value(0)
+        self.AF2C1.set_value(0)
+        self.AF2C2.set_value(0)
+        self.AF2C3.set_value(0)
+        self.AF3C1.set_value(0)
+        self.AF3C2.set_value(0)
+        self.AF3C3.set_value(0)
+
+        # cero a los resultados
+        self.BF1C1.set_value(0)
+        self.BF1C2.set_value(0)
+        self.BF1C3.set_value(0)
+        self.BF2C1.set_value(0)
+        self.BF2C2.set_value(0)
+        self.BF2C3.set_value(0)
+        self.BF3C1.set_value(0)
+        self.BF3C2.set_value(0)
+        self.BF3C3.set_value(0)
+
+    def obtener_valores_matriz_a(self):
+        # tomar el VALOR de cada cuadro de entrada de numeros
+        valor_AF1C1 = self.AF1C1.get_value()
+        valor_AF1C2 = self.AF1C2.get_value()
+        valor_AF1C3 = self.AF1C3.get_value()
+        valor_AF2C1 = self.AF2C1.get_value()
+        valor_AF2C2 = self.AF2C2.get_value()
+        valor_AF2C3 = self.AF2C3.get_value()
+        valor_AF3C1 = self.AF3C1.get_value()
+        valor_AF3C2 = self.AF3C2.get_value()
+        valor_AF3C3 = self.AF3C3.get_value()
+
+        # devolver todos los valores de la matriz A
+        return (valor_AF1C1, valor_AF1C2, valor_AF1C3, valor_AF2C1, valor_AF2C2, valor_AF2C3, valor_AF3C1, valor_AF3C2, valor_AF3C3)
+
+
 if __name__ == "__main__":
     w = calculadora()
     Gtk.main()
+
